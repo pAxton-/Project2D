@@ -1,7 +1,5 @@
 package Logic;
 
-import ParticleSystem.ParticleEmitter;
-import ParticleSystem.Particles;
 import org.lwjgl.Sys;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
@@ -22,51 +20,48 @@ import java.util.Random;
 
 public class Game {
 
-	//Hello, World!
-	//Another Comment.
-	//ANOTHER COMMENT AGAIN!
-	//ANOTHER FUCKING PEACE OF SHIT COMMENT!
-
 	static Game game;
 	final String TITLE = "TITLE";
 	final String VERSION = "0.0.1 pre-alpha";
-
+	
+	
 	Options options = new Options();
 	ImgLoader imgLoader = new ImgLoader();
     Sounds sound;
 	Screen screen;
 	Camera cam1;
 	GameState gameState = GameState.MENU;
-    ParticleEmitter PE;
-    ParticleEmitter PE2;
+
 
 	private long lastFrame;
 
     boolean closeProgram = false;
 
 	public void updateOptions(){
-
+		
 		options.readFile("src/res/options.cfg");
-
+		
+		
 	}
 	
 	public void init(){
 		
 		screen = new Screen(options.screenWidth, options.screenHeight, options.frameCap, options.fullscreen, options.vSync, TITLE+" - "+VERSION);
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
-        PE = new ParticleEmitter(new Vector3f(300,300,1));
-        PE2 = new ParticleEmitter(new Vector3f(400,200,1));
-        //sound = new Sounds();
+        sound = new Sounds();
 
-        /*try {
+
+        try {
             sound.init();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }*/
+        }
 
     }
 	
 	public void mainLoop(){
+
+
 
         double currentTime = getTime();
 
@@ -76,13 +71,13 @@ public class Game {
             switch (gameState){
 
                 case MENU:
-                       PE.update();
-                       PE2.update();
+
                     break;
                 case PLAYING:
 
                     break;
             }
+
 
             if(closeProgram){
 				break;
@@ -92,9 +87,10 @@ public class Game {
 	}
 	
 	public void close(){
-	//	sound.destroy();
+		sound.destroy();
         screen.destroy();
 	}
+
 	
 	public static void main(String[] args) {
 		game = new Game();
@@ -111,11 +107,10 @@ public class Game {
 		
 		return delta;
 		}
-
+		 
+	
 		public long getTime() {
-
 		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
-
 		}
 
 
