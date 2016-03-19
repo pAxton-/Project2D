@@ -19,8 +19,7 @@ import java.util.Random;
 
 
 public class Game {
-	
-	private static final Type PLAYER = null;
+
 	static Game game;
 	final String TITLE = "TITLE";
 	final String VERSION = "0.0.1 pre-alpha";
