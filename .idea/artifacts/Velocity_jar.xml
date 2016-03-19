@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="Velocity:jar">
+    <output-path>$USER_HOME$/Desktop/velocity</output-path>
+    <root id="root">
+      <element id="archive" name="Velocity.jar">
+        <element id="module-output" name="Project2D" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/../slick-util/lib/slick-util.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../lwjgl-2.9.1/jar/lwjgl_util.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../lwjgl-2.9.1/jar/lwjgl.jar" />
+    </root>
+  </artifact>
+</component>
