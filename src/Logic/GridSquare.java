@@ -12,12 +12,12 @@ import Util.ImgLoader;
 public class GridSquare extends Entity {
     Collision collision = new Collision();
     private GridType gridType = GridType.EMPTY;
-    ImgLoader il = new ImgLoader();
-   // Texture texture;
+
+
 
     public GridSquare(Vector3f position, Vector2f scale, Vector4f color, Type type) {
         super(position, scale, color, type);
-       texture = il.loadTexture("src/res/honey.png", "PNG");
+
     }
 
     public void setGridType(GridType gt) {

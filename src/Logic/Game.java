@@ -25,12 +25,10 @@ public class Game {
 	//ANOTHER COMMENT AGAIN!
 	//ANOTHER FUCKING PEACE OF SHIT COMMENT!
 
-
 	static Game game;
 	final String TITLE = "TITLE";
 	final String VERSION = "0.0.1 pre-alpha";
-	
-	
+
 	Options options = new Options();
 	ImgLoader imgLoader = new ImgLoader();
     Sounds sound;
@@ -43,10 +41,9 @@ public class Game {
     boolean closeProgram = false;
 
 	public void updateOptions(){
-		
+
 		options.readFile("src/res/options.cfg");
-		
-		
+
 	}
 	
 	public void init(){
@@ -54,7 +51,6 @@ public class Game {
 		screen = new Screen(options.screenWidth, options.screenHeight, options.frameCap, options.fullscreen, options.vSync, TITLE+" - "+VERSION);
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
         //sound = new Sounds();
-
 
         /*try {
             sound.init();
@@ -65,8 +61,6 @@ public class Game {
     }
 	
 	public void mainLoop(){
-
-
 
         double currentTime = getTime();
 
@@ -83,7 +77,6 @@ public class Game {
                     break;
             }
 
-
             if(closeProgram){
 				break;
 			}
@@ -92,10 +85,9 @@ public class Game {
 	}
 	
 	public void close(){
-		sound.destroy();
+	//	sound.destroy();
         screen.destroy();
 	}
-
 	
 	public static void main(String[] args) {
 		game = new Game();
@@ -112,10 +104,11 @@ public class Game {
 		
 		return delta;
 		}
-		 
-	
+
 		public long getTime() {
+
 		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
+
 		}
 
 
