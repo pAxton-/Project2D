@@ -33,7 +33,6 @@ public class Game {
 	Camera cam1;
 	GameState gameState = GameState.MENU;
 
-
 	private long lastFrame;
 
     boolean closeProgram = false;
@@ -49,14 +48,14 @@ public class Game {
 		
 		screen = new Screen(options.screenWidth, options.screenHeight, options.frameCap, options.fullscreen, options.vSync, TITLE+" - "+VERSION);
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
-        sound = new Sounds();
+        //sound = new Sounds();
 
 
-        try {
+        /*try {
             sound.init();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
 	
