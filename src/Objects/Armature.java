@@ -11,6 +11,7 @@ public class Armature {
     private Joint jointA   = new Joint();
     private Joint jointB   = new Joint();
     private float length;
+    private float angle = 0;
 
 
     public void setConstraint(Joint joint) {
@@ -29,15 +30,29 @@ public class Armature {
         }
     }
 
+    private void rotateToA(Joint to) {
+        float dx = to.getX() - jointA.getX();
+        float dy = to.getY() - jointA.getY();
+        angle = (float)Math.atan2(dy,dx);
+    }
+
+    private void rotateToB(Joint to) {
+        float dx = to.getX() - jointB.getX();
+        float dy = to.getY() - jointB.getY();
+        angle = (float)Math.atan2(dy,dx);
+    }
+
     public void connectToA(Joint joint){
-        getJointA().setX(joint.getX());
-        getJointA().setY(joint.getY());
+        rotateToA(joint);
+        getJointA().setX(joint.getX()-(float)Math.cos(angle)*length);
+        getJointA().setY(joint.getY()-(float)Math.sin(angle)*length);
         getJointA().setZ(joint.getZ());
     }
 
     public void connectToB(Joint joint) {
-        getJointB().setX(joint.getX());
-        getJointB().setY(joint.getY());
+        rotateToB(joint);
+        getJointB().setX(joint.getX()-(float)Math.cos(angle)*length);
+        getJointB().setY(joint.getY()-(float)Math.sin(angle)*length);
         getJointB().setZ(joint.getZ());
     }
 
