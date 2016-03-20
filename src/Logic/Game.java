@@ -22,6 +22,8 @@ import java.util.Random;
 public class Game {
 
 	//Hello, World!
+	//Another Comment.
+
 
 	static Game game;
 	final String TITLE = "TITLE";
