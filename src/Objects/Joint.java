@@ -64,6 +64,10 @@ public class Joint {
         public void setPosition(Vector3f position) {
             this.position = position;
         }
+
+        public void setPosition(float x, float y, float z) {
+            position.set(x,y,z);
+        }
     }
 
 

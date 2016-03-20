@@ -13,27 +13,35 @@ public class Skeleton {
     public Skeleton() {
         bones = new Armature[]{head, spine, arm_l, arm_r, leg_l, leg_r};
         //head parents with top of spine
-        bones[0].setConstraint(bones[0].getJointB());
-        bones[0].setParent(bones[1]);
-        bones[0].connectToB(bones[1].getJointA());//this may work backwards to how it sounds
+        head.setConstraint(head.getJointB());
+        head.setParent(spine);
+        head.connectToB(spine.getJointA());//this may work backwards to how it sounds
+        head.setLength(10);
         //spine has no parents, will be the bone that gets input
-        bones[1].setConstraint(bones[1].getJointB());
+        spine.setConstraint(spine.getJointB());
+        spine.setLength(20);
+        spine.getJointB().setPosition(position);
+        spine.getJointA().setPosition(position.x + spine.getLength(), position.y + spine.getLength(),position.z);
         //arm_l parents to spine
-        bones[2].setConstraint(bones[2].getJointB());
-        bones[2].setParent(bones[1]);
-        bones[2].connectToB(bones[1].getJointA());
+        arm_l.setConstraint(arm_l.getJointB());
+        arm_l.setParent(spine);
+        arm_l.connectToB(spine.getJointA());
+        arm_l.setLength(10);
         //arm_r parents to spine
-        bones[3].setConstraint(bones[3].getJointB());
-        bones[3].setParent(bones[1]);
-        bones[3].connectToB(bones[1].getJointA());
+        arm_r.setConstraint(arm_r.getJointB());
+        arm_r.setParent(spine);
+        arm_r.connectToB(spine.getJointA());
+        arm_r.setLength(10);
         //leg_l parents to spine
-        bones[4].setConstraint(bones[4].getJointB());
-        bones[4].setParent(bones[1]);
-        bones[4].connectToB(bones[1].getJointB());
+        leg_l.setConstraint(leg_l.getJointB());
+        leg_l.setParent(spine);
+        leg_l.connectToB(spine.getJointB());
+        leg_l.setLength(20);
         //leg_r parents to spine
-        bones[5].setConstraint(bones[4].getJointB());
-        bones[5].setParent(bones[1]);
-        bones[5].connectToB(bones[1].getJointB());
+        leg_r.setConstraint(leg_r.getJointB());
+        leg_r.setParent(spine);
+        leg_r.connectToB(spine.getJointB());
+        leg_r.setLength(20);
 
     }
 

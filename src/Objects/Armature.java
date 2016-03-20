@@ -1,6 +1,5 @@
 package Objects;
 
-import org.lwjgl.util.vector.Vector3f;
 
 /* *
  * Created by pAxton on 3/19/2016.
@@ -13,14 +12,6 @@ public class Armature {
     private Joint jointB   = new Joint();
     private float length;
 
-    public Armature(Armature parent, float length) {
-        if(parent != null) {
-            this.parent = parent;
-        }
-        this.length = length;
-        joints[0]   = jointA;
-        joints[1]   = jointB;
-    }
 
     public void setConstraint(Joint joint) {
         joint.setIsConstraint(true);
