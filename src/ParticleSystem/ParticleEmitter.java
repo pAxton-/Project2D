@@ -4,7 +4,7 @@ import org.lwjgl.util.vector.Vector3f;
 
 import static org.lwjgl.opengl.GL11.*;
 
-/**
+/* *
  * Created by pAxton on 3/20/2016.
  */
 public class ParticleEmitter {

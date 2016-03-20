@@ -3,7 +3,7 @@ package ParticleSystem;
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.util.vector.Vector4f;
 
-/**
+/* *
  * Created by pAxton on 3/20/2016.
  */
 public class Particles {
