@@ -1,5 +1,7 @@
 package Logic;
 
+import ParticleSystem.ParticleEmitter;
+import ParticleSystem.Particles;
 import org.lwjgl.Sys;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
@@ -35,6 +37,7 @@ public class Game {
 	Screen screen;
 	Camera cam1;
 	GameState gameState = GameState.MENU;
+    ParticleEmitter PE;
 
 	private long lastFrame;
 
@@ -50,6 +53,7 @@ public class Game {
 		
 		screen = new Screen(options.screenWidth, options.screenHeight, options.frameCap, options.fullscreen, options.vSync, TITLE+" - "+VERSION);
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
+        PE = new ParticleEmitter(new Vector3f(300,300,1));
         //sound = new Sounds();
 
         /*try {
@@ -70,7 +74,7 @@ public class Game {
             switch (gameState){
 
                 case MENU:
-
+                       PE.update();
                     break;
                 case PLAYING:
 

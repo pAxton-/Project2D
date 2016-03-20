@@ -9,10 +9,29 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class ParticleEmitter {
 
+    Particles part = new Particles(Particles.SHAPE.POINT, Particles.COLORTYPE.COLORBLENDING);
+    Particles[] parts = new Particles[50];
+
     private Vector3f position;
 
     public ParticleEmitter(Vector3f position) {
+
         this.position = position;
+        for(int i = 0; i < parts.length; i++) {
+            parts[i] =  new Particles(Particles.SHAPE.POINT, Particles.COLORTYPE.COLORBLENDING);
+            parts[i].setPosition(position);
+            System.out.println(i);
+        }
+        part.setPosition(position);
+    }
+    public void update() {
+       parts[0].update(this.position, 0.2f, 4f, 1f, 2f);
+      // parts[1].update(this.position,0.2f,4f,1f,2f);
+
+      //  for(Particles pt : parts) {
+      //      pt.update(this.position,5f,0.4f,1f,2f);
+
+      //  }
     }
 
     public Vector3f getPosition() {
@@ -23,33 +42,5 @@ public class ParticleEmitter {
         this.position = position;
     }
 
-    private class Render {
 
-        public void drawPoly(){
-            glDisable(GL_TEXTURE_2D);
-
-            glPushMatrix();
-            glTranslatef(position.x, position.y, position.z);
-           // glRotatef(rot, 0, 0, 1);
-           // glScalef(scale.x, scale.y, 0);
-           // glColor4f(color.x, color.y, color.z, color.w);
-
-            glBegin(GL_POLYGON);
-
-            glVertex2f(-0.5f, -0.5f);
-
-            glVertex2f(0.5f, -0.5f);
-
-            glVertex2f(0.5f, 0.5f);
-
-            glVertex2f(-0.5f, 0.5f);
-
-
-            glEnd();
-            glPopMatrix();
-
-
-        }
-
-    }
 }
