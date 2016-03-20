@@ -27,7 +27,7 @@ public class Game {
 	
 	Options options = new Options();
 	ImgLoader imgLoader = new ImgLoader();
-    Sounds sound;
+    //Sounds sound;
 	Screen screen;
 	Camera cam1;
 	GameState gameState = GameState.MENU;
@@ -48,14 +48,14 @@ public class Game {
 		
 		screen = new Screen(options.screenWidth, options.screenHeight, options.frameCap, options.fullscreen, options.vSync, TITLE+" - "+VERSION);
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
-        sound = new Sounds();
+       // sound = new Sounds();
 
 
         try {
-            sound.init();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        //    sound.init();
+      //  } catch (FileNotFoundException e) {
+      //      e.printStackTrace();
+     //   }
 
     }
 	
@@ -87,7 +87,7 @@ public class Game {
 	}
 	
 	public void close(){
-		sound.destroy();
+	//	sound.destroy();
         screen.destroy();
 	}
 
