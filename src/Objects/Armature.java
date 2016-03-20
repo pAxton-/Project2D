@@ -9,15 +9,33 @@ public class Armature {
 
     private Armature parent;
     private Joint[] joints = new Joint[2];
-    private Joint jointA = new Joint();
-    private Joint jointB = new Joint();
+    private Joint jointA   = new Joint();
+    private Joint jointB   = new Joint();
+    private float length;
 
-    public Armature(Armature parent) {
+    public Armature(Armature parent, float length) {
         if(parent != null) {
             this.parent = parent;
         }
-        joints[0] = jointA;
-        joints[1] = jointB;
+        this.length = length;
+        joints[0]   = jointA;
+        joints[1]   = jointB;
+    }
+
+    public void setConstraint(Joint joint) {
+        joint.setIsConstraint(true);
+    }
+
+    public void rotate(float angle) {
+
+        if(jointA.isConstraint()) {
+            jointA.setX((float)Math.cos(angle)*length);
+            jointA.setY((float)Math.sin(angle)*length);
+        }
+        if(jointB.isConstraint()) {
+            jointB.setX((float)Math.cos(angle)*length);
+            jointB.setY((float)Math.sin(angle)*length);
+        }
     }
 
     public void connectToA(Joint joint){
@@ -43,6 +61,7 @@ public class Armature {
     public Joint[] getJoints() {
         return  joints;
     }
+
     public Joint getJointA() {
         return jointA;
     }
@@ -59,10 +78,23 @@ public class Armature {
         this.jointB = b;
     }
 
+    public void setJoints(Joint[] joints) {
+        this.joints = joints;
+    }
+
+    public float getLength() {
+        return length;
+    }
+
+    public void setLength(float length) {
+        this.length = length;
+    }
+
     private class Joint {
 
         private Vector3f position = new Vector3f();
         private float x,y,z;
+        private boolean isConstraint = false;
 
         public Joint() {
 
@@ -76,6 +108,14 @@ public class Armature {
 
         public Joint(Vector3f vector) {
             setPosition(vector);
+        }
+
+        public boolean isConstraint() {
+            return isConstraint;
+        }
+
+        public void setIsConstraint(boolean isConstraint) {
+            this.isConstraint = isConstraint;
         }
 
         public float getX() {
