@@ -2,7 +2,7 @@ package Objects;
 
 import org.lwjgl.util.vector.Vector3f;
 
-/**
+/* *
  * Created by pAxton on 3/19/2016.
  */
 public class Joint {
