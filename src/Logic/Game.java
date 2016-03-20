@@ -21,6 +21,8 @@ import java.util.Random;
 
 public class Game {
 
+	//Hello, World!
+
 	static Game game;
 	final String TITLE = "TITLE";
 	final String VERSION = "0.0.1 pre-alpha";
