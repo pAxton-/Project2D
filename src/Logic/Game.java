@@ -38,6 +38,7 @@ public class Game {
 	Camera cam1;
 	GameState gameState = GameState.MENU;
     ParticleEmitter PE;
+    ParticleEmitter PE2;
 
 	private long lastFrame;
 
@@ -54,6 +55,7 @@ public class Game {
 		screen = new Screen(options.screenWidth, options.screenHeight, options.frameCap, options.fullscreen, options.vSync, TITLE+" - "+VERSION);
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
         PE = new ParticleEmitter(new Vector3f(300,300,1));
+        PE2 = new ParticleEmitter(new Vector3f(400,200,1));
         //sound = new Sounds();
 
         /*try {
@@ -75,6 +77,7 @@ public class Game {
 
                 case MENU:
                        PE.update();
+                       PE2.update();
                     break;
                 case PLAYING:
 
