@@ -48,7 +48,7 @@ public class Particle {
             s.update();
             s.dtx = currentPos.x;
             s.dty = currentPos.y;
-           //   renderPoint();
+            //renderPoint();
             flutter();
           if( currentPos.y > 300) {
                 fall();
