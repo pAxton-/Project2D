@@ -2,6 +2,7 @@ package Logic;
 
 import ParticleEngine.ParticleEmitter;
 import org.lwjgl.Sys;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector2f;
 
 import Objects.Camera;
@@ -74,7 +75,18 @@ public class Game {
                     break;
             }
 
-
+            if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+                pe.gravity += 0.005f;
+            }
+            if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
+                pe.gravity -= 0.005f;
+            }
+            if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+                pe.addMore();
+            }
+            if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+                pe.amount -= 1;
+            }
             if(closeProgram){
 				break;
 			}

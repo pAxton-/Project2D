@@ -12,6 +12,8 @@ public class ParticleEmitter {
    // Particle[] group = new Particle[10];
     ArrayList<Particle> group = new ArrayList<>();
     Vector3f position = new Vector3f();
+    public int amount = 1;
+    public float gravity = 1;
 
     long time;
 
@@ -29,7 +31,7 @@ public class ParticleEmitter {
         time = getTime();
 
         group.add(0,new Particle(position,null));
-        for ( int i = 1; i < 20; i++) {
+        for ( int i = 1; i < amount; i++) {
             group.add(i,new Particle(position,group.get(i-1)));
         }
 
@@ -42,6 +44,11 @@ public class ParticleEmitter {
         */
     }
 
+    public void addMore() {
+        int i = group.size();
+        group.add(new Particle(position,group.get(i-1)));
+    }
+
     public void start() {
         group.get(0).spawn();
         for(int i = 0; i < group.size(); i++) {
@@ -50,14 +57,16 @@ public class ParticleEmitter {
                     group.get(i).spawn();
                 }
             }
-            if(group.get(i).isAlive == true) {
-                group.get(i).currentPos.y += 3;
+            if(group.get(i).isAlive == true ) {
+
+                group.get(i).currentPos.y += gravity;
             }
             group.get(i).update();
-            System.out.println("" + i +  " : " + group.get(i).currentPos.y + " " + group.get(i).isAlive);
+
             if(group.get(i).hasDied){
                 group.get(i).currentPos = new Vector3f(400,75,1);
                 group.get(i).hasDied = false;
+                group.get(i).isFalling = false;
             }
         }
 

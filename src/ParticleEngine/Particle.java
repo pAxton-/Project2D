@@ -16,6 +16,7 @@ public class Particle {
     float length = 0;
     public boolean isAlive = false;
     public boolean hasDied = false;
+    public boolean isFalling = false;
     Particle parent;
 
     Particle(float x, float y, float z) {
@@ -40,17 +41,21 @@ public class Particle {
             }
         }
         if (isAlive == true) {
-              render();
+              renderPoint();
             flutter();
-          //  this.rise();
+          if( currentPos.y > 300) {
+                fall();
+            }
+
         }
-        if (currentPos.y > 600) {
+        if (currentPos.y > 600 || currentPos.y < 0) {
             die();
         }
     }
 
-    public void rise() {
-        currentPos.y += 0.1f;
+    public void fall() {
+        isFalling = true;
+        currentPos.y -= 1f;
     }
 
     public void spawn() {
@@ -69,24 +74,56 @@ public class Particle {
         currentPos.y += (float)Math.sin(angle)*length;
     }
 
-    private void render() {
+    private void renderQuad() {
         Random r = new Random();
-        int a = r.nextInt(4);
-        float rot = r.nextInt(90);
+        int a = r.nextInt(20);
+        float rot = r.nextInt(1000);
         float red = r.nextFloat();
         float green = r.nextFloat();
         float blue = r.nextFloat();
+        glEnable(GL_BLEND);
+        glEnable(GL_DEPTH_TEST);
+
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glDisable(GL_TEXTURE_2D);
         glPushMatrix();
         glTranslatef(currentPos.x	, currentPos.y, currentPos.z);
-        glRotatef(rot, rot, 0, 1);
+        glRotatef(rot, 0, 0, 1);
         glPointSize(a);
-        glColor4f(red, green, blue, 1);
+        glScalef(a,a,a);
+        glColor4f(red, green, blue, red);
+        glBegin(GL_QUADS);
+        glVertex2f(-0.5f, -0.5f);
+        glVertex2f(-0.5f, 0.5f);
+        glVertex2f(0.5f, 0.5f);
+        glVertex2f(0.5f, -0.5f);
+        glEnd();
+        glPopMatrix();
+    }
+
+    private void renderPoint() {
+        Random r = new Random();
+        int a = r.nextInt(4);
+        float rot = r.nextInt(1000);
+        float red = r.nextFloat();
+        float green = r.nextFloat();
+        float blue = r.nextFloat();
+        glEnable(GL_BLEND);
+        glEnable(GL_DEPTH_TEST);
+
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glDisable(GL_TEXTURE_2D);
+        glPushMatrix();
+        glTranslatef(currentPos.x	, currentPos.y, currentPos.z);
+        glRotatef(rot, 0, 0, 1);
+        glPointSize(a);
+      //  glScalef(a,a,a);
+        glColor4f(red, 0.1f,0.1f, 0.6f);
         glBegin(GL_POINTS);
-        glVertex2f(0, 0);
-        glVertex2f(-2, -2);
-        glVertex2f(2, 2);
-        glVertex2f(-2, 1);
+        glVertex2f(-0.5f, -0.5f);
+
         glEnd();
         glPopMatrix();
     }
