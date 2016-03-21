@@ -57,7 +57,7 @@ public class ParticleEmitter {
                     group.get(i).spawn();
                 }
             }
-            if(group.get(i).isAlive == true ) {
+            if(group.get(i).isAlive == true )  {
 
                 group.get(i).currentPos.y += gravity;
             }

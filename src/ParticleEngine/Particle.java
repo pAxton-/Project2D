@@ -74,7 +74,7 @@ public class Particle {
         currentPos.y += (float)Math.sin(angle)*length;
     }
 
-    private void renderQuad() {
+    private void renderQuad()  {
         Random r = new Random();
         int a = r.nextInt(20);
         float rot = r.nextInt(1000);
