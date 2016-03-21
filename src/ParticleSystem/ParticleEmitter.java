@@ -27,20 +27,24 @@ public class ParticleEmitter {
 
         }
         time = getTime();
-      //  part.setPosition(position);
+
     }
     public void update() {
-       // if(getTime() > time )
-      // parts[8].update(this.position, 0.2f, 4f, 1f, 10f);
-      // parts[1].update(this.position,0.2f,4f,1f,2f);
-
-
+        // I AM GOING ABOUT THIS ALL WRONG
+      for(int i = 0; i < 50; i++){
+          if(getTime() > time+100 ){
+              new Particles(this.position,Particles.SHAPE.POINT, Particles.COLORTYPE.COLORBLENDING).update(.5f,.4f,0.5f,12f);
+              time = getTime();
+          }
+      }
+/*
         for(Particles pt : parts) {
            if(getTime() > time )
           pt.update(.5f,.4f,0.5f,12f);
 
           time = getTime();
         }
+        */
       //  time = getTime();
     }
 

@@ -59,8 +59,8 @@ public class Particles {
 
         this.position.x += flutter - rand.nextFloat();
         this.position.x = this.position.x + (float)Math.atan2(this.position.y*rand.nextFloat(),this.position.x*rand.nextFloat()) * rand.nextFloat();
-        this.position.x = this.position.x +(float)Math.cos(changer*rand.nextFloat()) *speed*rand.nextFloat();
-        this.position.y = this.position.y  +(float)Math.sin(changer) *speed*rand.nextFloat();
+        this.position.x = this.position.x -(float)Math.cos(changer*rand.nextFloat()) *speed*rand.nextFloat()+rand.nextInt(10)-10;
+        this.position.y = this.position.y  - (float)Math.sin(changer) *speed*rand.nextFloat()+1;
         this.position.y += 1f;
     }
 
