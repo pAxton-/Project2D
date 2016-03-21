@@ -8,18 +8,18 @@ import java.util.ArrayList;
 /**
  * Created by Lance on 3/20/2016.
  */
-public class PaticleEmitter {
+public class ParticleEmitter {
    // Particle[] group = new Particle[10];
     ArrayList<Particle> group = new ArrayList<>();
     Vector3f position = new Vector3f();
 
     long time;
 
-    public PaticleEmitter(Vector3f initPos) {
+    public ParticleEmitter(Vector3f initPos) {
         position = initPos;
     }
 
-    public PaticleEmitter(float x, float y, float z) {
+    public ParticleEmitter(float x, float y, float z) {
         position.x = x;
         position.y = y;
         position.z = z;
@@ -46,15 +46,19 @@ public class PaticleEmitter {
         group.get(0).spawn();
         for(int i = 0; i < group.size(); i++) {
             if (group.get(i).parent != null && group.get(i).isAlive == false) {
-                if(group.get(i).parent.currentPos.y > group.get(i).currentPos.y + 10) {
+                if(group.get(i).parent.currentPos.y > group.get(i).currentPos.y + 2) {
                     group.get(i).spawn();
                 }
             }
             if(group.get(i).isAlive == true) {
-                group.get(i).currentPos.y += 1;
+                group.get(i).currentPos.y += 3;
             }
             group.get(i).update();
             System.out.println("" + i +  " : " + group.get(i).currentPos.y + " " + group.get(i).isAlive);
+            if(group.get(i).hasDied){
+                group.get(i).currentPos = new Vector3f(400,75,1);
+                group.get(i).hasDied = false;
+            }
         }
 
         /*

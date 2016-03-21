@@ -1,22 +1,14 @@
 package Logic;
 
-import ParticleEngine.PaticleEmitter;
+import ParticleEngine.ParticleEmitter;
 import org.lwjgl.Sys;
 import org.lwjgl.util.vector.Vector2f;
-import org.lwjgl.util.vector.Vector3f;
-import org.lwjgl.util.vector.Vector4f;
-import org.newdawn.slick.opengl.Texture;
 
 import Objects.Camera;
-import Objects.Entity;
 
-import Objects.Entity.Type;
 import Util.ImgLoader;
 import Util.Options;
 import Util.Screen;
-
-import java.io.FileNotFoundException;
-import java.util.Random;
 
 
 public class Game {
@@ -33,7 +25,7 @@ public class Game {
 	Screen screen;
 	Camera cam1;
 	GameState gameState = GameState.MENU;
-    PaticleEmitter pe;
+    ParticleEmitter pe;
 
 	private long lastFrame;
 
@@ -50,7 +42,7 @@ public class Game {
 		
 		screen = new Screen(options.screenWidth, options.screenHeight, options.frameCap, options.fullscreen, options.vSync, TITLE+" - "+VERSION);
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
-        pe = new PaticleEmitter(400,300,1);
+        pe = new ParticleEmitter(400,300,1);
       /*  sound = new Sounds();
 
 
