@@ -1,7 +1,9 @@
 package ParticleEngine;
 
+import Objects.Skeleton;
 import org.lwjgl.util.vector.Vector3f;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -18,6 +20,7 @@ public class Particle {
     public boolean hasDied = false;
     public boolean isFalling = false;
     Particle parent;
+    Skeleton s;
 
     Particle(float x, float y, float z) {
         startPosition.x = x;
@@ -26,11 +29,12 @@ public class Particle {
         currentPos = startPosition;
     }
     public Particle(Vector3f position, Particle pt) {
-        currentPos = new Vector3f(400,75,1);
+        currentPos = new Vector3f(400,0,1);
+        s = new Skeleton(4,4);
         startPosition = position;
      //   currentPos = startPosition;
         Random r = new Random();
-        length = r.nextInt(20);
+        length = r.nextInt(5);
         parent = pt;
     }
 
@@ -41,7 +45,10 @@ public class Particle {
             }
         }
         if (isAlive == true) {
-              renderPoint();
+            s.update();
+            s.dtx = currentPos.x;
+            s.dty = currentPos.y;
+           //   renderPoint();
             flutter();
           if( currentPos.y > 300) {
                 fall();
@@ -69,7 +76,7 @@ public class Particle {
 
     private void flutter() {
         Random r = new Random();
-        angle = r.nextInt(90);
+        angle = r.nextInt(12);
         currentPos.x += (float)Math.cos(angle)*length;
         currentPos.y += (float)Math.sin(angle)*length;
     }

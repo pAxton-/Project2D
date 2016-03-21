@@ -1,5 +1,6 @@
 package ParticleEngine;
 
+import Objects.Skeleton;
 import org.lwjgl.Sys;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -14,6 +15,7 @@ public class ParticleEmitter {
     Vector3f position = new Vector3f();
     public int amount = 1;
     public float gravity = 1;
+
 
     long time;
 
@@ -33,6 +35,7 @@ public class ParticleEmitter {
         group.add(0,new Particle(position,null));
         for ( int i = 1; i < amount; i++) {
             group.add(i,new Particle(position,group.get(i-1)));
+
         }
 
 
