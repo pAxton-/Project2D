@@ -18,7 +18,7 @@ public class Camera {
 	public void create(){
 	glMatrixMode(GL_PROJECTION);
 				glLoadIdentity();
-		glOrtho(0, 800,0, 800, -1, 1);
+		glOrtho(0, 800,0, 600, -1, 1);
 		glMatrixMode(GL_MODELVIEW);
 		glViewport((int)-position.x, (int)-position.y, (int)scale.x, (int)scale.y);
 		
