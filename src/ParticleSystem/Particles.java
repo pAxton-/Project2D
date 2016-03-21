@@ -20,7 +20,7 @@ public class Particles {
     private COLORTYPE cType;
     private SHAPE     type;
     float changer = 0;
-    Random rand = new Random(1234);
+    Random rand;
     Render render;
 
     public enum COLORTYPE {
@@ -31,13 +31,15 @@ public class Particles {
         QUAD, POINT, TRIANGLE, POLYGON;
     }
 
-    public Particles(SHAPE type, COLORTYPE cType) {
+    public Particles(Vector3f position, SHAPE type, COLORTYPE cType) {
         this.cType = cType;
         this.type  = type;
+        this.position = position;
         render = new Render();
+        rand = new Random();
     }
-    public void update(Vector3f position, float angle, float speed, float fadeSpeed, float length) {
-      // this.position = position;
+    public void update( float angle, float speed, float fadeSpeed, float length) {
+        this.position.x = this.position.x + (float)(Math.cos(rand.nextInt(50)-50));
         this.angle    = angle;
         this.speed    = speed;
         colorBlender(fadeSpeed,length);
@@ -52,11 +54,14 @@ public class Particles {
     }
 
     public void rotating() {
-        float flutter = rand.nextInt(10);
-        this.position.x = this.position.x +(float)Math.cos(changer*flutter) *speed;
-        this.position.y = this.position.y  +(float)Math.sin(changer*flutter) *speed;
-        this.position.y += 0.01f;
-      //  this.position.x = this.position.x + (float)Math.atan2(this.position.y*flutter,this.position.x+flutter) * flutter;
+        rand = new Random();
+        float flutter = rand.nextFloat();
+
+        this.position.x += flutter - rand.nextFloat();
+        this.position.x = this.position.x + (float)Math.atan2(this.position.y*rand.nextFloat(),this.position.x*rand.nextFloat()) * rand.nextFloat();
+        this.position.x = this.position.x +(float)Math.cos(changer*rand.nextFloat()) *speed*rand.nextFloat();
+        this.position.y = this.position.y  +(float)Math.sin(changer) *speed*rand.nextFloat();
+        this.position.y += 1f;
     }
 
     public void colorBlender(float fadeSpeed, float length) {
