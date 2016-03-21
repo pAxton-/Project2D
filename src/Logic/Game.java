@@ -1,26 +1,19 @@
 package Logic;
 
+import ParticleEngine.ParticleEmitter;
 import org.lwjgl.Sys;
 import org.lwjgl.util.vector.Vector2f;
-import org.lwjgl.util.vector.Vector3f;
-import org.lwjgl.util.vector.Vector4f;
-import org.newdawn.slick.opengl.Texture;
 
 import Objects.Camera;
-import Objects.Entity;
 
-import Objects.Entity.Type;
 import Util.ImgLoader;
 import Util.Options;
 import Util.Screen;
 
-import java.io.FileNotFoundException;
-import java.util.Random;
-
 
 public class Game {
 	
-	private static final Type PLAYER = null;
+
 	static Game game;
 	final String TITLE = "TITLE";
 	final String VERSION = "0.0.1 pre-alpha";
@@ -32,7 +25,7 @@ public class Game {
 	Screen screen;
 	Camera cam1;
 	GameState gameState = GameState.MENU;
-
+    ParticleEmitter pe;
 
 	private long lastFrame;
 
@@ -49,7 +42,8 @@ public class Game {
 		
 		screen = new Screen(options.screenWidth, options.screenHeight, options.frameCap, options.fullscreen, options.vSync, TITLE+" - "+VERSION);
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
-        sound = new Sounds();
+        pe = new ParticleEmitter(400,300,1);
+      /*  sound = new Sounds();
 
 
         try {
@@ -57,6 +51,7 @@ public class Game {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        */
 
     }
 	
@@ -65,14 +60,14 @@ public class Game {
 
 
         double currentTime = getTime();
-
+        pe.init();
 		while(!screen.isCloseRequested()){
 
             cam1.update();
             switch (gameState){
 
                 case MENU:
-
+                    pe.start();
                     break;
                 case PLAYING:
 
@@ -88,7 +83,7 @@ public class Game {
 	}
 	
 	public void close(){
-		sound.destroy();
+		//sound.destroy();
         screen.destroy();
 	}
 
