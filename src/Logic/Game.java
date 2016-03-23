@@ -22,11 +22,6 @@ import java.util.Random;
 
 public class Game {
 
-	//Hello, World!
-	//Another Comment.
-	//ANOTHER COMMENT AGAIN!
-	//ANOTHER FUCKING PEACE OF SHIT COMMENT!
-
 	static Game game;
 	final String TITLE = "TITLE";
 	final String VERSION = "0.0.1 pre-alpha";
