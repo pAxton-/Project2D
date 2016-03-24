@@ -1,5 +1,6 @@
 package Logic;
 
+import Objects.PlayableEntity;
 import ParticleEngine.ParticleEmitter;
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
@@ -32,11 +33,14 @@ public class Game {
 
     boolean closeProgram = false;
 
-	public void updateOptions(){
+	PlayableEntity player;
+    PlayableEntity player2;
+
+
+    public void updateOptions(){
 		
 		options.readFile("src/res/options.cfg");
-		
-		
+
 	}
 	
 	public void init(){
@@ -44,6 +48,13 @@ public class Game {
 		screen = new Screen(options.screenWidth, options.screenHeight, options.frameCap, options.fullscreen, options.vSync, TITLE+" - "+VERSION);
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
         pe = new ParticleEmitter(400,300,1);
+		player = new PlayableEntity();
+		player.setY(300);
+		player.setX(400);
+		player.setZ(1);
+        player.init(1);
+
+     //   sys = new EventSystem();
       /*  sound = new Sounds();
 
 
@@ -62,13 +73,17 @@ public class Game {
 
         double currentTime = getTime();
         pe.init();
+        player.setInputEnabled(true);
 		while(!screen.isCloseRequested()){
 
             cam1.update();
             switch (gameState){
 
                 case MENU:
-                    pe.start();
+                   // pe.start();
+
+                    player.update(getDelta());
+
                     break;
                 case PLAYING:
 
@@ -102,10 +117,11 @@ public class Game {
 	
 	public static void main(String[] args) {
 		game = new Game();
-		
+
 		game.updateOptions();
 		game.init();
-		game.mainLoop();
+        game.mainLoop();
+
 		game.close();
 	}
 	public int getDelta() {

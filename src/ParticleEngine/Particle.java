@@ -45,10 +45,10 @@ public class Particle {
             }
         }
         if (isAlive == true) {
-            s.update();
+           // s.update();
             s.dtx = currentPos.x;
             s.dty = currentPos.y;
-            //renderPoint();
+            renderQuad();
             flutter();
           if( currentPos.y > 300) {
                 fall();

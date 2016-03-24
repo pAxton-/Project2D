@@ -3,20 +3,19 @@ package Logic;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.util.vector.Vector4f;
-import Objects.Entity;
-import Util.ImgLoader;
+import Objects.Entity_OLD;
 
 /**
  * Created by Lance Paxton on 2/23/16.
  */
-public class GridSquare extends Entity {
+public class GridSquare extends Entity_OLD {
     Collision collision = new Collision();
     private GridType gridType = GridType.EMPTY;
 
 
 
-    public GridSquare(Vector3f position, Vector2f scale, Vector4f color, Type type) {
-        super(position, scale, color, type);
+    public GridSquare(Vector3f position, Vector2f scale, Vector4f color) {
+        super(position, scale, color);
 
     }
 
@@ -28,7 +27,7 @@ public class GridSquare extends Entity {
         return this.gridType;
     }
 
-    public void collisionCheck(Entity ent) {
+    public void collisionCheck(Entity_OLD ent) {
         if (collision.isColliding(ent)) {
             super.color = new Vector4f(1,1,1,1);
             setPosition(new Vector3f(getPositionX(),getPositionY(),5));
@@ -39,7 +38,7 @@ public class GridSquare extends Entity {
     }
      class Collision {
 
-        public boolean isColliding(Entity a) {
+        public boolean isColliding(Entity_OLD a) {
             if (a.getPositionX() < (getPositionX() + scale.x/2) &&
                         a.getPositionX() > (getPositionX() - scale.x/2) &&
                         a.getPositionY() < (getPositionY() + scale.y/2) &&

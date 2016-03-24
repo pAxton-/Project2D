@@ -25,8 +25,7 @@ public class Grid {
                 gridSquares[x][y] = new GridSquare(
                                                           new Vector3f(incPx, incPy, 1),
                                                           new Vector2f(width, height),
-                                                          new Vector4f(1, 1, 1, 0.05f),
-                                                          null
+                                                          new Vector4f(1, 1, 1, 0.05f)
                 );
                 incPx = incPx + width;
                 if (ylop > size - 1) {
