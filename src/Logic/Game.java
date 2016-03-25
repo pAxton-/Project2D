@@ -49,10 +49,17 @@ public class Game {
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
         pe = new ParticleEmitter(400,300,1);
 		player = new PlayableEntity();
+        player2 = new PlayableEntity();
 		player.setY(300);
-		player.setX(400);
+		player.setX(600);
 		player.setZ(1);
         player.init(1);
+        player2.setY(400);
+        player2.setX(100);
+        player2.setZ(1);
+        player2.init(1);
+
+
 
      //   sys = new EventSystem();
       /*  sound = new Sounds();
@@ -74,14 +81,16 @@ public class Game {
         double currentTime = getTime();
         pe.init();
         player.setInputEnabled(true);
+        player2.setInputEnabled(true);
 		while(!screen.isCloseRequested()){
 
             cam1.update();
             switch (gameState){
 
                 case MENU:
-                   // pe.start();
+                    //pe.start();
 
+                    player2.update(getDelta());
                     player.update(getDelta());
 
                     break;

@@ -9,7 +9,7 @@ import sun.security.util.DisabledAlgorithmConstraints;
  */
 public class InputHandler  {
 
-    static PlayableEntity player;
+    PlayableEntity player;
 
     private boolean keyPressed = false;
     private boolean keyReleased = false;

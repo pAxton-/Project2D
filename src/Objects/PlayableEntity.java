@@ -14,7 +14,7 @@ import static org.lwjgl.opengl.GL11.glPopMatrix;
  */
 public class PlayableEntity extends BaseEntity  {
 
-    static InputHandler IH;
+    InputHandler IH;
     private static boolean inputEnabled = false;
     private Keyboard kb;
     private boolean upPressed = Keyboard.isKeyDown(Keyboard.KEY_W);
@@ -69,7 +69,7 @@ public class PlayableEntity extends BaseEntity  {
         glPushMatrix();
         glTranslatef(getX(), getY(), 0);
         glRotatef(0, 0, 0, 1);
-        glPointSize(2);
+        glPointSize(5);
 
         // glColor4f((float)Math.cos(angle)*.625f, (float)Math.sin(angle)*0.625f, (float)Math.sin(angle)*.625f, color.w);
         glBegin(GL_POINTS);

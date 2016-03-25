@@ -5,7 +5,7 @@ package Objects;
  * Created by Lance on 3/21/2016.
  */
 public abstract class BaseEntity {
-    private static float x;
+    private float x;
     private float y;
     private float z;
     private float mass, health;
@@ -28,7 +28,7 @@ public abstract class BaseEntity {
         return y - getScaleY()/2;
     }
 
-    public static float getX() {
+    public float getX() {
         return x;
     }
 
