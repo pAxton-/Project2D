@@ -81,16 +81,16 @@ public class PlayableEntity extends BaseEntity  {
 
     public void move(float angle, int delta) {
         if(rightPressed) {
-            setX(getX() + 0.1f * delta);
+            setX(getX() + 0.01f * delta);
             setRot(0);
         }
         if(leftPressed) {
-            setX(getX()- 0.1f*delta);
+            setX(getX()- 0.01f*delta);
             setRot(-180);
         }
         if(upPressed) {
-            setX(getX()+(float)Math.cos(angle) * 0.2f*delta);
-            setY(getY()+(float)Math.sin(angle)* 0.2f*delta);
+            setX(getX()+(float)Math.cos(angle) * 0.1f*delta);
+            setY(getY()+(float)Math.sin(angle)* 0.1f*delta);
            // setY(getY()+0.1f*delta);
             //setRot(90);
         }
