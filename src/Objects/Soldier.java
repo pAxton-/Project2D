@@ -3,6 +3,7 @@ package Objects;
 import Objects.Land.Ground;
 import Objects.Weapons.TestWeapon;
 import Util.ImgLoader;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.opengl.Texture;
 
@@ -34,16 +35,26 @@ public class Soldier extends PlayableEntity {
     }
     public void update(int delta) {
         updateKeyState();
-        if(isDirByMouse()) {
+        if(isDirByMouse() && !Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
             dx = getX() - Mouse.getX();
             dy = getY() - Mouse.getY();
-            localRot = (float)Math.atan2(Mouse.getY()-getY(), Mouse.getX()-getX());
-            float rot = (float)Math.toDegrees(localRot);
+            localRot = (float) Math.atan2(Mouse.getY() - getY(), Mouse.getX() - getX());
+            float rot = (float) Math.toDegrees(localRot);
             setRot(rot);
-        }
 
-        moveOnXAxis(0.15f, localRot , delta);
-        moveOnYAxis(0.15f, localRot, delta);
+
+            moveOnXAxis(0.15f, localRot, delta);
+            moveOnYAxis(0.15f, localRot, delta);
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+            dx = getX() - Mouse.getX();
+            dy = getY() - Mouse.getY();
+            localRot = (float) Math.atan2(Mouse.getY() - getY(), Mouse.getX() - getX());
+            float rot = (float) Math.toDegrees(localRot);
+            setRot(rot);
+           move(localRot,delta);
+
+        }
         draw();
     }
 
@@ -74,10 +85,10 @@ public class Soldier extends PlayableEntity {
         glTexCoord2f(.15f, 0);
         glVertex3f(.5f, .5f, 0);
 
-        glTexCoord2f(.15f, .35f);
+        glTexCoord2f(.15f, .395f);
         glVertex3f(.5f, -.5f, 0);
 
-        glTexCoord2f(0, .35f);
+        glTexCoord2f(0, .395f);
         glVertex3f(-.5f, -.5f, 0);
 
         glEnd();

@@ -12,8 +12,8 @@ public class TestWeapon extends Weapon{
         setX(0);
         setY(0);
         setZ(1f);
-        setScaleX(20);
-        setScaleY(20);
+        setScaleX(30);
+        setScaleY(30);
     }
 
     public void update() {

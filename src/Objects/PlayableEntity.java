@@ -79,6 +79,27 @@ public class PlayableEntity extends BaseEntity  {
         }
     }
 
+    public void move(float angle, int delta) {
+        if(rightPressed) {
+            setX(getX() + 0.1f * delta);
+            setRot(0);
+        }
+        if(leftPressed) {
+            setX(getX()- 0.1f*delta);
+            setRot(-180);
+        }
+        if(upPressed) {
+            setX(getX()+(float)Math.cos(angle) * 0.2f*delta);
+            setY(getY()+(float)Math.sin(angle)* 0.2f*delta);
+           // setY(getY()+0.1f*delta);
+            //setRot(90);
+        }
+        if(downPressed) {
+            setY(getY()-0.1f*delta);
+            setRot(-90);
+        }
+    }
+
     public void updateKeyState() {
         upPressed    = Keyboard.isKeyDown(Keyboard.KEY_W);
         downPressed  = Keyboard.isKeyDown(Keyboard.KEY_S);
