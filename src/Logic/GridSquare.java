@@ -3,7 +3,7 @@ package Logic;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 import org.lwjgl.util.vector.Vector4f;
-import Objects.Entity_OLD;
+import Objects.Other.Entity_OLD;
 
 /**
  * Created by Lance Paxton on 2/23/16.

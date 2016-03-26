@@ -1,6 +1,7 @@
-package Objects;
+package Objects.Other;
 
-import org.lwjgl.input.Mouse;
+import Objects.Other.Armature;
+import Objects.Other.Joint;
 
 import java.util.ArrayList;
 

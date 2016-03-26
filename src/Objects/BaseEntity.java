@@ -8,9 +8,25 @@ public abstract class BaseEntity {
     private float x;
     private float y;
     private float z;
-    private float mass, health;
+    private float mass, health, rot;
     private float[] scale = new float[2];
+    PhysicsType type;
 
+    public float[] getScale() {
+        return scale;
+    }
+
+    public void setScale(float[] scale) {
+        this.scale = scale;
+    }
+
+    public PhysicsType getType() {
+        return type;
+    }
+
+    public void setType(PhysicsType type) {
+        this.type = type;
+    }
 
     public float getLeftSide() {
         return x - getScaleX()/2;
@@ -74,6 +90,14 @@ public abstract class BaseEntity {
 
     public void setScaleY(float scale) {
         this.scale[1] = scale;
+    }
+
+    public float getRot() {
+        return rot;
+    }
+
+    public void setRot(float rot) {
+        this.rot = rot;
     }
 
     public float getHealth() {

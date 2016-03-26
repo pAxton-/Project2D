@@ -1,6 +1,5 @@
 package ParticleEngine;
 
-import Objects.Skeleton;
 import org.lwjgl.Sys;
 import org.lwjgl.util.vector.Vector3f;
 

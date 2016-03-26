@@ -1,4 +1,5 @@
-package Objects;
+package Objects.Other;
+import Objects.Camera;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector2f;

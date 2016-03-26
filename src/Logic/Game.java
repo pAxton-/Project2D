@@ -1,6 +1,7 @@
 package Logic;
 
-import Objects.PlayableEntity;
+import Objects.Land.Ground;
+import Objects.Soldier;
 import ParticleEngine.ParticleEmitter;
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
@@ -12,13 +13,19 @@ import Util.ImgLoader;
 import Util.Options;
 import Util.Screen;
 
+import java.util.Scanner;
+
 
 public class Game {
 	
 
 	static Game game;
-	final String TITLE = "TITLE";
+    private static String name;
+    private static Scanner in = new Scanner(System.in);
+    final static String TITLE = "TITLE";
 	final String VERSION = "0.0.1 pre-alpha";
+    static boolean running = true;
+    static boolean start = false;
 	
 	
 	Options options = new Options();
@@ -33,8 +40,9 @@ public class Game {
 
     boolean closeProgram = false;
 
-	PlayableEntity player;
-    PlayableEntity player2;
+	Ground ground;
+    Soldier player2;
+    GameMode level1;
 
 
     public void updateOptions(){
@@ -48,16 +56,20 @@ public class Game {
 		screen = new Screen(options.screenWidth, options.screenHeight, options.frameCap, options.fullscreen, options.vSync, TITLE+" - "+VERSION);
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
         pe = new ParticleEmitter(400,300,1);
-		player = new PlayableEntity();
-        player2 = new PlayableEntity();
-		player.setY(300);
-		player.setX(600);
-		player.setZ(1);
-        player.init(1);
-        player2.setY(400);
-        player2.setX(100);
-        player2.setZ(1);
+        level1 = new GameMode();
+        /*
+		ground = new Ground();
+        player2 = new Soldier(ground);
+		ground.setY(300);
+		ground.setX(600);
+		ground.setZ(-.9f);
+        ground.init(1);
+        player2.setY(options.screenHeight/2);
+        player2.setX(options.screenWidth/2);
+        player2.setZ(.9f);
         player2.init(1);
+        */
+
 
 
 
@@ -79,26 +91,29 @@ public class Game {
 
 
         double currentTime = getTime();
-        pe.init();
-        player.setInputEnabled(true);
-        player2.setInputEnabled(true);
-		while(!screen.isCloseRequested()){
+        //pe.init();
+        //ground.init(9);
+        //ground.setInputEnabled(true);
+      //  player2.setInputEnabled(true);
 
+		while(!screen.isCloseRequested()){
+        int delta = getDelta();
             cam1.update();
             switch (gameState){
 
                 case MENU:
                     //pe.start();
+                   // ground.update(delta);
+                    level1.update(delta);
+                   // player2.update(delta);
 
-                    player2.update(getDelta());
-                    player.update(getDelta());
 
                     break;
                 case PLAYING:
 
                     break;
             }
-
+/*
             if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
                 pe.gravity += 0.005f;
             }
@@ -111,6 +126,7 @@ public class Game {
             if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
                 pe.amount -= 1;
             }
+            */
             if(closeProgram){
 				break;
 			}
@@ -125,13 +141,15 @@ public class Game {
 
 	
 	public static void main(String[] args) {
-		game = new Game();
 
-		game.updateOptions();
-		game.init();
-        game.mainLoop();
+            game = new Game();
 
-		game.close();
+            game.updateOptions();
+            game.init();
+            game.mainLoop();
+
+            game.close();
+
 	}
 	public int getDelta() {
 		long time = getTime();

@@ -1,7 +1,4 @@
-package Objects;
-
-import org.lwjgl.input.Mouse;
-import org.lwjgl.util.vector.Vector4f;
+package Objects.Other;
 
 /**
  * Created by Lance on 3/12/2016.

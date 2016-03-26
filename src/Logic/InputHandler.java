@@ -1,21 +1,23 @@
 package Logic;
 
-import Objects.PlayableEntity;
-import org.lwjgl.input.Keyboard;
-import sun.security.util.DisabledAlgorithmConstraints;
+import Objects.Land.Ground;
+import Objects.Weapons.TestWeapon;
+import Objects.Weapons.Weapon;
 
 /**
  * Created by Lance on 3/22/2016.
  */
 public class InputHandler  {
 
-    PlayableEntity player;
+    Ground ground;
+    TestWeapon weap;
 
     private boolean keyPressed = false;
     private boolean keyReleased = false;
 
-    public InputHandler(PlayableEntity player) {
-        this.player = player;
+    public InputHandler(Ground ground, TestWeapon weapon) {
+        this.ground = ground;
+        this.weap = weapon;
     }
 
     public void run() {
@@ -24,14 +26,17 @@ public class InputHandler  {
     }
 
 
-    public void X_Axis(float speed, int delta ) {
-        player.setX(player.getX()+speed*delta);
+    public void X_Axis(float speed, float angle, int delta ) {
+        ground.setX(ground.getX()-(float)Math.cos(angle) * speed*delta);
+        weap.setX(weap.getX()-(float)Math.cos(angle) * speed*delta);
         System.out.println("speed : " + speed );
     }
 
 
-    public void Y_Axis() {
-
+    public void Y_Axis(float speed, float angle, int delta) {
+        ground.setY(ground.getY()+(float)Math.sin(-angle)*speed*delta);
+        weap.setY(weap.getY()+(float)Math.sin(-angle)*speed*delta);
+        System.out.println("speed : " + speed );
     }
 
 

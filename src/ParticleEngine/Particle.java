@@ -1,9 +1,8 @@
 package ParticleEngine;
 
-import Objects.Skeleton;
+import Objects.Other.Skeleton;
 import org.lwjgl.util.vector.Vector3f;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import static org.lwjgl.opengl.GL11.*;

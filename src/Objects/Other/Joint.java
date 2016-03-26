@@ -1,4 +1,4 @@
-package Objects;
+package Objects.Other;
 
 import org.lwjgl.util.vector.Vector4f;
 
