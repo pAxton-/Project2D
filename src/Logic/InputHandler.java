@@ -28,14 +28,14 @@ public class InputHandler  {
 
     public void X_Axis(float speed, float angle, int delta ) {
         ground.setX(ground.getX()-(float)Math.cos(angle) * speed*delta);
-        weap.setX(weap.getX()-(float)Math.cos(angle) * speed*delta);
+       // weap.setX(weap.getX()-(float)Math.cos(angle) * speed*delta);
         System.out.println("speed : " + speed );
     }
 
 
     public void Y_Axis(float speed, float angle, int delta) {
         ground.setY(ground.getY()+(float)Math.sin(-angle)*speed*delta);
-        weap.setY(weap.getY()+(float)Math.sin(-angle)*speed*delta);
+    //    weap.setY(weap.getY()+(float)Math.sin(-angle)*speed*delta);
         System.out.println("speed : " + speed );
     }
 

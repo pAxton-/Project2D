@@ -30,6 +30,9 @@ public class GameMode {
         player.init(1);
         player.setInputEnabled(true);
         map.setInputEnabled(true);
+        weap.setOffset(8);
+        weap.setParent(player);
+
 
     }
 

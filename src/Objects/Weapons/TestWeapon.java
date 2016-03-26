@@ -11,12 +11,15 @@ public class TestWeapon extends Weapon{
     public TestWeapon() {
         setX(0);
         setY(0);
-        setZ(.8f);
-        setScaleX(5);
-        setScaleY(8);
+        setZ(1f);
+        setScaleX(20);
+        setScaleY(20);
     }
 
     public void update() {
+        setX(getParent().getX()+getOffset());
+        setY(getParent().getY()+2);
+        setRot(parent.getRot());
         draw();
     }
 
@@ -37,19 +40,20 @@ public class TestWeapon extends Weapon{
         glColor4f(1, 1, 1, 1);
         //texture.bind();
 
-
-        glBegin(GL_QUADS);
+        glLineWidth(2);
+        glBegin(GL_LINES);
         glTexCoord2f(0, 0);
-        glVertex3f(-.5f, .5f, 0);
+        glColor4f(0, 1, 0, 1);
+        glVertex3f(0, 1, 0);
 
         glTexCoord2f(.15f, 0);
-        glVertex3f(.5f, .5f, 0);
-
+        glVertex3f(0, 0, 0);
+        glColor4f(1, 0, 0, 1);
         glTexCoord2f(.15f, .35f);
-        glVertex3f(.5f, -.5f, 0);
+        glVertex3f(0, 0, 0);
 
         glTexCoord2f(0, .35f);
-        glVertex3f(-.5f, -.5f, 0);
+        glVertex3f(1, 0, 0);
 
         glEnd();
 

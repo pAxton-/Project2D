@@ -21,7 +21,7 @@ public abstract class Weapon extends BaseEntity {
         this.parent = parent;
         setX(parent.getX()+offset);
         setY(parent.getY());
-        setRot(parent.getRot());
+      //  setRot(parent.getRot());
     }
 
     public float getOffset() {
