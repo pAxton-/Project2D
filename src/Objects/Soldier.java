@@ -1,5 +1,6 @@
 package Objects;
 
+import Logic.MsgType;
 import Objects.Land.Ground;
 import Objects.Weapons.TestWeapon;
 import Util.ImgLoader;
@@ -17,13 +18,17 @@ public class Soldier extends PlayableEntity {
 
     Texture texture;
     ImgLoader il = new ImgLoader();
-    float cyc = 0;
-    private float localRot;
+    float speed = 0.15f;
+    float cx = 0;
+    float cy = 0;
+    public float localRot;
     Ground ground;
+    boolean debug = false;
+    MsgType crrntMsg = null;
 
 
-    public Soldier(Ground ground, TestWeapon weap) {
-        super(ground, weap);
+    public Soldier(Ground ground) {
+        super(ground);
         this.ground = ground;
         texture = il.loadTexture("src/res/soldier.png", "PNG");
         setScaleX(50);
@@ -35,6 +40,31 @@ public class Soldier extends PlayableEntity {
     }
     public void update(int delta) {
         updateKeyState();
+
+        if (crrntMsg == MsgType.COLLIDED) {
+            setInputEnabled(false);
+            setDirByMouse(false);
+            if(upPressed){
+                speed = -0.09f;
+            }
+            if(downPressed) {
+                speed = 0.09f;
+            }
+           // dx = getX() - Mouse.getX();
+           // dy = getY() - Mouse.getY();
+            localRot = (float) Math.atan2(Mouse.getY() - getY(), Mouse.getX() - getX());
+            float rot = (float) Math.toDegrees(localRot);
+            setRot(rot);
+            IH.Y_Axis(speed, localRot+45, delta);
+            IH.X_Axis(speed, localRot+45, delta);
+
+        } else {
+            setInputEnabled(true);
+            setDirByMouse(true);
+            cx = getX();
+            cy = getY();
+            speed = 0.15f;
+        }
         if(isDirByMouse() && !Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
             dx = getX() - Mouse.getX();
             dy = getY() - Mouse.getY();
@@ -43,8 +73,8 @@ public class Soldier extends PlayableEntity {
             setRot(rot);
 
 
-            moveOnXAxis(0.15f, localRot, delta);
-            moveOnYAxis(0.15f, localRot, delta);
+            moveOnXAxis(speed, localRot, delta);
+            moveOnYAxis(speed, localRot, delta);
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
             dx = getX() - Mouse.getX();
@@ -52,10 +82,17 @@ public class Soldier extends PlayableEntity {
             localRot = (float) Math.atan2(Mouse.getY() - getY(), Mouse.getX() - getX());
             float rot = (float) Math.toDegrees(localRot);
             setRot(rot);
-           move(localRot,delta);
+           move(speed, localRot,delta);
 
         }
+        if(debug) {
+            drawOrigin();
+        }
         draw();
+    }
+
+    public void receiveMsg(MsgType msg) {
+        crrntMsg = msg;
     }
 
     public void draw() {

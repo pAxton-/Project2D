@@ -18,16 +18,16 @@ public class PlayableEntity extends BaseEntity  {
     private boolean dirByarrows = false;
     private boolean dirByMouse = true;
     private Keyboard kb;
-    private boolean upPressed = Keyboard.isKeyDown(Keyboard.KEY_W);
-    private boolean downPressed = Keyboard.isKeyDown(Keyboard.KEY_S);
+    public boolean upPressed = Keyboard.isKeyDown(Keyboard.KEY_W);
+    public boolean downPressed = Keyboard.isKeyDown(Keyboard.KEY_S);
     private boolean rightPressed = Keyboard.isKeyDown(Keyboard.KEY_D);
     private boolean leftPressed = Keyboard.isKeyDown(Keyboard.KEY_A);
 
     float dx, dy;
 
 
-    public PlayableEntity(Ground ground, TestWeapon weap) {
-       IH =  new InputHandler(ground, weap);
+    public PlayableEntity(Ground ground) {
+       IH =  new InputHandler(ground);
     }
 
     public void init(float g) {
@@ -37,7 +37,7 @@ public class PlayableEntity extends BaseEntity  {
     public void update(int delta) {
         updateKeyState();
 
-        draw();
+
     }
     public boolean isInputEnabled() {
         return inputEnabled;
@@ -48,12 +48,14 @@ public class PlayableEntity extends BaseEntity  {
     }
 
     public void moveOnXAxis(float speed, float angle, int delta) {
+        /*
         if (rightPressed && inputEnabled && !upPressed && !downPressed) {
             IH.X_Axis(-speed, angle, delta);
             if(dirByarrows) {
                 setRot(-90);
             }
         }
+        */
         if(leftPressed && inputEnabled && !upPressed && !downPressed) {
             IH.X_Axis(speed, angle, delta );
             if (dirByarrows) {
@@ -63,7 +65,7 @@ public class PlayableEntity extends BaseEntity  {
     }
 
     public void moveOnYAxis(float speed, float angle, int delta) {
-        if(upPressed && inputEnabled  && !rightPressed && !leftPressed) {
+        if(upPressed && inputEnabled ) {
             IH.Y_Axis(speed, angle, delta);
             IH.X_Axis(speed, angle, delta);
             if(dirByarrows) {
@@ -79,7 +81,7 @@ public class PlayableEntity extends BaseEntity  {
         }
     }
 
-    public void move(float angle, int delta) {
+    public void move(float speed, float angle, int delta) {
         if(rightPressed) {
             setX(getX() + 0.01f * delta);
             setRot(0);
@@ -89,8 +91,8 @@ public class PlayableEntity extends BaseEntity  {
             setRot(-180);
         }
         if(upPressed) {
-            setX(getX()+(float)Math.cos(angle) * 0.1f*delta);
-            setY(getY()+(float)Math.sin(angle)* 0.1f*delta);
+            setX(getX()+(float)Math.cos(angle) * speed*delta);
+            setY(getY()+(float)Math.sin(angle)* speed*delta);
            // setY(getY()+0.1f*delta);
             //setRot(90);
         }
@@ -107,18 +109,24 @@ public class PlayableEntity extends BaseEntity  {
         leftPressed  = Keyboard.isKeyDown(Keyboard.KEY_A);
 
     }
-    private void draw() {
+    public void drawOrigin() {
 
         glDisable(GL_TEXTURE_2D);
       //  glDisable(GL_BLEND);
         glPushMatrix();
         glTranslatef(getX(), getY(), 1);
-        glRotatef(0, 0, 0, 1);
-        glPointSize(15);
+        glRotatef(getRot()-90, 0, 0, 1);
+        glScalef(50,50,0);
 
         glColor4f(1, 1, 1, 1);
-        glBegin(GL_POINTS);
-        glVertex3f(0.0f,0.0f,0.0f);
+        glBegin(GL_LINES);
+        glColor3f(1,0,0);
+        glVertex3f(1,0.0f,0.0f);
+        glVertex3f(0,0.0f,0.0f);
+        glColor3f(0,1,0);
+        glVertex3f(0,1,0.0f);
+        glVertex3f(0,0.0f,0.0f);
+
         glEnd();
         glPopMatrix();
 

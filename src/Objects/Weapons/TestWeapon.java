@@ -1,5 +1,10 @@
 package Objects.Weapons;
 
+import Logic.MsgType;
+import org.lwjgl.input.Keyboard;
+
+import java.util.LinkedList;
+
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 
@@ -8,19 +13,53 @@ import static org.lwjgl.opengl.GL11.glPopMatrix;
  */
 public class TestWeapon extends Weapon{
 
+    int coolDown = 5;
+    LinkedList<Projectile> mag = new LinkedList<Projectile>();
+    Projectile bullet;
+
     public TestWeapon() {
         setX(0);
         setY(0);
         setZ(1f);
         setScaleX(30);
         setScaleY(30);
+        setMagCapacity(30);
+
+    }
+
+    public void updateBullets() {
+        for(int i = 0; i < mag.size();i++) {
+            bullet = mag.get(i);
+
+               bullet.update();
+
+        }
+        for(int i = 0 ; i < mag.size(); i++) {
+            if(mag.get(i).getX() > mag.get(i).initX + 1700 || mag.get(i).getX() < mag.get(i).initX - 1700  ||
+                    mag.get(i).getY() > mag.get(i).initY + 1700 || mag.get(i).getY() < mag.get(i).initY - 1700) {
+                removeBullet(mag.get(i));
+            }
+        }
+    }
+
+    public Projectile fireBullet(Projectile bullet) {
+        mag.add(bullet);
+        return bullet;
+    }
+
+    public void removeBullet(Projectile bul) {
+        mag.remove(bul);
     }
 
     public void update() {
         setX(getParent().getX()+getOffset());
         setY(getParent().getY()+2);
         setRot(parent.getRot());
+        updateBullets();
+
         draw();
+
+
     }
 
     private void draw() {
@@ -40,20 +79,12 @@ public class TestWeapon extends Weapon{
         glColor4f(1, 1, 1, 1);
         //texture.bind();
 
-        glLineWidth(2);
+        glLineWidth(4);
         glBegin(GL_LINES);
         glTexCoord2f(0, 0);
-        glColor4f(0, 1, 0, 1);
-        glVertex3f(0, 1, 0);
-
-        glTexCoord2f(.15f, 0);
-        glVertex3f(0, 0, 0);
-        glColor4f(1, 0, 0, 1);
-        glTexCoord2f(.15f, .35f);
-        glVertex3f(0, 0, 0);
-
-        glTexCoord2f(0, .35f);
-        glVertex3f(1, 0, 0);
+        glColor4f(0.2f, .2f, .2f, 1);
+        glVertex3f(.5f, 1, 0);
+        glVertex3f(.5f,0,0);
 
         glEnd();
 

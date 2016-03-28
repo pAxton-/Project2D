@@ -56,7 +56,8 @@ public class Game {
 		screen = new Screen(options.screenWidth, options.screenHeight, options.frameCap, options.fullscreen, options.vSync, TITLE+" - "+VERSION);
 		cam1 = new Camera(new Vector2f(0,0), new Vector2f(options.screenWidth, options.screenHeight));
         pe = new ParticleEmitter(400,300,1);
-        level1 = new GameMode();
+        level1 = new GameMode(options.screenWidth/2,options.screenHeight/2);
+
         /*
 		ground = new Ground();
         player2 = new Soldier(ground);

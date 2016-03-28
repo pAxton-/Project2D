@@ -25,13 +25,13 @@ public class Ground extends BaseEntity {
     ImgLoader il = new ImgLoader();
 
     public Ground() {
-        //IH = new InputHandler(this);
-
-    }
-    public void init(float g) {
         texture = il.loadTexture("src/res/grass.png", "PNG");
         setScaleX(10000);
         setScaleY(10000);
+
+    }
+    public void init(float g) {
+
 
     }
 
