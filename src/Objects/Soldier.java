@@ -52,11 +52,11 @@ public class Soldier extends PlayableEntity {
             }
            // dx = getX() - Mouse.getX();
            // dy = getY() - Mouse.getY();
-            localRot = (float) Math.atan2(Mouse.getY() - getY(), Mouse.getX() - getX());
-            float rot = (float) Math.toDegrees(localRot);
-            setRot(rot);
-            IH.Y_Axis(speed, localRot+45, delta);
-            IH.X_Axis(speed, localRot+45, delta);
+           // localRot = (float) Math.atan2(Mouse.getY() - getY(), Mouse.getX() - getX());
+            //float rot = (float) Math.toDegrees(localRot);
+            //setRot(rot);
+            IH.Y_Axis(speed, localRot, delta);
+            IH.X_Axis(speed, localRot, delta);
 
         } else {
             setInputEnabled(true);
